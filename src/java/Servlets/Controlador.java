@@ -5,7 +5,7 @@
  */
 package Servlets;
 
-import com.pruebatecnica.registrousuario.UsuarioService;
+import com.pruebatecnica.registrousuario.services.UsuarioService;
 import com.pruebatecnica.registrousuario.beans.Transacciones;
 import com.pruebatecnica.registrousuario.beans.Usuario;
 import java.io.IOException;

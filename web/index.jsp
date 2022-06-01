@@ -6,7 +6,7 @@
 <%@page import="com.pruebatecnica.registrousuario.beans.Transacciones"%>
 <%@page import="com.pruebatecnica.registrousuario.beans.Usuario"%>
 <%@page import="java.util.List"%>
-<%@page import="com.pruebatecnica.registrousuario.UsuarioService"%>
+<%@page import="com.pruebatecnica.registrousuario.services.UsuarioService"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -102,7 +102,6 @@ tr:nth-child(even) {
                         <td><%= indexTras%></td>
                         <td><%= t.getMaquina()%></td>
                         <td><%= t.getHora()%> <a type="date" </a></td>
-                       
                          
                     </tr>
                     <%}%>

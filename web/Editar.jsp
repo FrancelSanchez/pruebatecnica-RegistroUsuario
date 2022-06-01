@@ -4,8 +4,9 @@
     Author     : Francel Sanchez
 --%>
 
+
 <%@page import="com.pruebatecnica.registrousuario.beans.Usuario"%>
-<%@page import="com.pruebatecnica.registrousuario.UsuarioService"%>
+<%@page import="com.pruebatecnica.registrousuario.services.UsuarioService"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

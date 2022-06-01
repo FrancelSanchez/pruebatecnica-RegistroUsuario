@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.pruebatecnica.registrousuario;
+package com.pruebatecnica.registrousuario.services;
 
 import java.util.Set;
 
@@ -28,7 +28,7 @@ public class ApplicationConfig extends javax.ws.rs.core.Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
-        resources.add(com.pruebatecnica.registrousuario.UsuarioService.class);
+        resources.add(com.pruebatecnica.registrousuario.services.UsuarioService.class);
     }
     
 }
