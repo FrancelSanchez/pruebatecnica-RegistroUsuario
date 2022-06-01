@@ -1,5 +1,5 @@
 
-package com.pruebatecnica.registrousuario;
+package com.pruebatecnica.registrousuario.services;
 
 import com.pruebatecnica.registrousuario.beans.Transacciones;
 import com.pruebatecnica.registrousuario.beans.Usuario;
@@ -39,16 +39,21 @@ public class UsuarioService {
     @Path("/getUsuarios")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Usuario> getUsuarios() { // METODO GET PARA OBTENER LA LISTA DE USUARIOS
-  
-    return listUsuario; // RETORNA UNA LISTA DE USUARIOS
+       
+              // RETORNA UNA LISTA DE USUARIOS
+              return listUsuario;
+     
+       
     }
     
     @GET
     @Path("/getTransacciones")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Transacciones> getTrans() { // METODO GET PARA OBTENER LA LISTA DE USUARIOS
-  
-    return listTransacciones; // RETORNA UNA LISTA DE USUARIOS
+   
+             return listTransacciones; // RETORNA UNA LISTA DE USUARIOS
+     
+      
     }
     
     @Path("crearUsuarios")
@@ -67,7 +72,7 @@ public class UsuarioService {
             trans.setMaquina(hostname);
             listTransacciones.add(trans);
             
-         ;
+     
 
     } 
     
@@ -87,16 +92,17 @@ public class UsuarioService {
       
     
     @GET
-    @Path("buscarUsuarioById")
+    @Path("/buscarUsuarioById")
     @Produces(MediaType.APPLICATION_JSON) 
     public Usuario buscarUsuarioById(int id) { //METODO GET PARA OBTENER USUARIOS POR EL ID, ESTE METODO ES USADO PARA PASAR LOS DATOS DEL USUARIO DEL INDEX A LA PAGINA DE EDITAR
-       Usuario usuarioResp = new Usuario(); 
+        
+         Usuario usuarioResp = new Usuario(); 
       //SETEO DEL OBJETO USUARIO MEDIANTE EL ID OBTENIDO DE LA LISTA
        usuarioResp.setNombre(listUsuario.get(id).getNombre());
        usuarioResp.setApellido(listUsuario.get(id).getApellido());
-       usuarioResp.setComentario(listUsuario.get(id).getComentario());        
-  
-        return usuarioResp;
+       usuarioResp.setComentario(listUsuario.get(id).getComentario());
+       return usuarioResp;
+    
     }
     
     
@@ -105,13 +111,14 @@ public class UsuarioService {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Usuario editarUsuario(@PathParam("id") int id, @PathParam("nombre") String nombre,@PathParam("apellido") String apellido, @PathParam("comentario") String comentario) { // METODO PARA EDITAR EL USUARIO
+     
         Usuario usuarioResp = new Usuario();   
        usuarioResp.setNombre(nombre); 
        usuarioResp.setApellido(apellido); 
        usuarioResp.setComentario(comentario); 
-        listUsuario.set(id, usuarioResp);
-  
-       return usuarioResp;
+      listUsuario.set(id, usuarioResp);
+      return usuarioResp;
+      
     }
     
     
