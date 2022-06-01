@@ -34,9 +34,9 @@
             <label>Id</label>
                <input type="text" value="<%= id%>" name="iduser" readonly="" class="form-control">
             <label>Nombre</label>
-            <input type="text" value="<%= u.getNombre()%>" name="textnom" class="form-control">
+            <input type="text" value="<%= u.getNombre()%>" name="textnom" class="form-control" required>
              <label>Apellido</label>
-            <input type="text" value="<%= u.getApellido()%>" name="textap" class="form-control">
+            <input type="text" value="<%= u.getApellido()%>" name="textap" class="form-control" required>
             <label>Comentario</label>
             <input type="text" value="<%= u.getComentario()%>"  name="textcomentario" class="form-control">
             <input type="submit" name="accion" value="Actualizar">

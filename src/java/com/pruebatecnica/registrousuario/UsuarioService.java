@@ -1,6 +1,7 @@
 
 package com.pruebatecnica.registrousuario;
 
+import com.pruebatecnica.registrousuario.beans.Transacciones;
 import com.pruebatecnica.registrousuario.beans.Usuario;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -14,6 +15,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.enterprise.context.RequestScoped;
 import javax.jws.WebParam;
+import javax.servlet.http.HttpSession;
 import javax.ws.rs.POST;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.PathParam;
@@ -27,16 +29,12 @@ public class UsuarioService {
     //COMO NO SE DEBE CONECTAR A UNA BASE DE DATOS REAL UTILICE UNA LISTA DE OBJETO TIPO USUARIO PARA GUARDAR LOS REGISTROS.
    
     static final List<Usuario> listUsuario = new ArrayList<>();  // OBJETO LISTA TIPO USUARIO
-    
-    
-
+     static final List<Transacciones> listTransacciones= new ArrayList<>();  // OBJETO LISTA TIPO USUARIO
     @Context
     private UriInfo context;
     public UsuarioService() {
     }
 
-    
-    
     @GET
     @Path("/getUsuarios")
     @Produces(MediaType.APPLICATION_JSON)
@@ -45,30 +43,43 @@ public class UsuarioService {
     return listUsuario; // RETORNA UNA LISTA DE USUARIOS
     }
     
-
+    @GET
+    @Path("/getTransacciones")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Transacciones> getTrans() { // METODO GET PARA OBTENER LA LISTA DE USUARIOS
+  
+    return listTransacciones; // RETORNA UNA LISTA DE USUARIOS
+    }
     
-    
-    @Path("/crearUsuarios")
+    @Path("crearUsuarios")
     @POST 
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Usuario crearUsuarios(Usuario user) {// METODO POST PARA CREAR USUARIOS NUEVOS
+    public void crearUsuarios(@PathParam("nombre") String nombre,@PathParam("apellido") String apellido, @PathParam("comentario") String comentario, @PathParam("hora") String hora, @PathParam("hostname") String hostname) {// METODO POST PARA CREAR USUARIOS NUEVOS
           Usuario usuarionew = new Usuario(); // OBJETO TIPO USUARIO PARA SETEAR LOS VALORES
-        usuarionew.setNombre(user.getNombre());
-        usuarionew.setApellido(user.getApellido());
-        usuarionew.setComentario(user.getComentario());        
+        usuarionew.setNombre(nombre);
+        usuarionew.setApellido(apellido);
+        usuarionew.setComentario(comentario);        
          listUsuario.add(usuarionew); // AGREGARNO VALORES A LA LISTA
-    return user;
+       
+            Transacciones trans = new Transacciones(); // INSTANCIANDO LA LISTA PARA AGREGAR LA MAQUINA Y LA HORA DE LA INSERCION
+            trans.setHora(hora);           
+            trans.setMaquina(hostname);
+            listTransacciones.add(trans);
+            
+         ;
 
     } 
     
-    @Path("/borrarUser")
+    
+    @Path("borrarUser")
     @DELETE 
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public void borrarUser(int user) { // METODO PARA BORRAR LOS USUARIOS
        if(listUsuario.isEmpty() == false){ // VALIDO QUE LA LISTA NO ESTE VACIA PARA QUE NO DE ERROR AL MOMENTO DE INTENTAR BORRAR
              listUsuario.remove(user);// REMUEVE LOS USUARIOS DE LA LISTA
+             listTransacciones.remove(user);// REMUEVE LOS REGISTROS DE LA LISTA TRANSACCIONES
         }
        
 
@@ -100,7 +111,7 @@ public class UsuarioService {
        usuarioResp.setComentario(comentario); 
         listUsuario.set(id, usuarioResp);
   
-        return usuarioResp;
+       return usuarioResp;
     }
     
     

@@ -3,6 +3,7 @@
     Created on : May 30, 2022, 6:13:53 PM
     Author     : Francel Sanchez
 --%>
+<%@page import="com.pruebatecnica.registrousuario.beans.Transacciones"%>
 <%@page import="com.pruebatecnica.registrousuario.beans.Usuario"%>
 <%@page import="java.util.List"%>
 <%@page import="com.pruebatecnica.registrousuario.UsuarioService"%>
@@ -73,6 +74,36 @@ tr:nth-child(even) {
                             %> 
                             </a>
                         </td>
+                    </tr>
+                    <%}%>
+                </tbody>
+            </table>
+                
+                <table class="table table-hover">
+                <thead>
+                    <tr>
+                         <th>Id</th>
+                        <th>Maquina</th>
+                        <th>Hora</th>
+                      
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <%
+           
+                        List<Transacciones> trasn =userR.getTrans();
+                       int indexTras;
+                        for(Transacciones t:trasn){
+                             indexTras = trasn.indexOf(t);
+                     %>
+                    <tr>
+                       
+                        <td><%= indexTras%></td>
+                        <td><%= t.getMaquina()%></td>
+                        <td><%= t.getHora()%> <a type="date" </a></td>
+                       
+                         
                     </tr>
                     <%}%>
                 </tbody>

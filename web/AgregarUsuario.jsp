@@ -20,8 +20,8 @@
                     <div class="card-header">
                         <h5>Agregar nuevo Usuario</h5>
                     </div>
-                       <%
-                   String hostname = "Unknown";
+                 <%
+                  String hostname = "Unknown";
                     
                   try
                     {
@@ -34,19 +34,20 @@
                     {
                         System.out.println("Hostname can not be resolved");
                     }
-                    
-                    %>
+                 %>
                     </div>             
         
         <div class="card-body">
         <form action="Controlador">
             <label>Nombre</label>
-            <input type="text" name="textnom" class="form-control">
+            <input type="text" name="textnom" class="form-control" required>
              <label>Apellido</label>
-            <input type="text" name="textap" class="form-control">
+            <input type="text" name="textap" class="form-control" required>
             <label>Comentario</label>
             <input type="text" name="textcomentario" class="form-control">
-            <input type="submit"  name="accion" value="Guardar">
+            <input type="text" name="hostname"  value="<%= hostname%>" hidden="" class="form-control">
+            <input type="submit" name="accion" value="Guardar">
+ 
             <a href="Controlador?accion=index">Regresar</a>
           </form>
             </div>  
